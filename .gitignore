@@ -102,3 +102,9 @@ ENV/
 
 # Core files
 *~
+
+# Spikes
+spikes/
+
+# Emacs temp files
+*#*

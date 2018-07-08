@@ -6,13 +6,16 @@ import numpy as np
 import matplotlib.image as mpimg
 from scipy.misc import imsave
 
-test_data_filename = 'tree.jpg'
+#test_data_filename = 'tree.jpg'
 
-# The test images are saved as files. Read the images and use them for imput.
-data = np.array(mpimg.imread(test_data_filename), dtype=np.float64)
+file_names = ['pic1.jpg', 'pic2.jpg']
 
-#Slice-out the black and white picture from color picture
-bwimage = data[ :, :, 0]
+for fname in file_names:
+    # The test images are saved as files. Read the images and use them for imput.
+    data = np.array(mpimg.imread(fname), dtype=np.float64)
 
-# Save array as image to disc
-imsave('bwtree.jpg', bwimage)
+    #Slice-out the black and white picture from color picture
+    bwimage = data[ :, :, 0]
+
+    # Save array as image to disc
+    imsave(fname + '.jpg', bwimage)

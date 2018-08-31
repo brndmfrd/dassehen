@@ -17,6 +17,24 @@ import numpy as np
 __pixWidth__ = 5
 
 
+def SliceImage(img, topCenter, bottomCenter):
+    """ Slices an image from the top center position to the bottom center position. """
+    # Picture slice should be like a movie that has the black bars at the top and bottom.
+    # Return the matrix slice
+    targetRows = img[topCenter:bottomCenter, :]
+    
+    return targetRows
+
+
+def SetBoundaries(img):
+    """ Given an image, will define the midpoing, top-center, and bottom-center positions """
+    midpoint = int(img.shape[0] / 2)
+    topCenter = int(midpoint - __pixWidth__)
+    bottomCenter = int(midpoint + __pixWidth__)
+
+    return midpoint, topCenter, bottomCenter
+
+
 def main(arg):
     """ Entry point for processing parallax with command arguments. """
     # Expect args to be a 3-dim array of (2, LENGTH, WIDTH)
@@ -40,11 +58,11 @@ def main(arg):
         print('picture is not tall enough for this ride')
         return
 
-    midpoint = int(img1.shape[0] / 2)
-    topCenter = int(midpoint - __pixWidth__)
-    bottomCenter = int(midpoint + __pixWidth__)
+    midpoint, topCenter, bottomCenter = SetBoundaries(img1)
 
-    targetRows = img1[topCenter:bottomCenter, :]
+    imgSlice1 = SliceImage(img1, topCenter, bottomCenter)
+    imgSlice2 = SliceImage(img2, topCenter, bottomCenter)
 
-    print(targetRows)
+    print(imgSlice1)
 
+    print(imgSlice2)

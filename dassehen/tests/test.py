@@ -16,3 +16,4 @@ test_data_dir = './images/'
 data = np.array([mpimg.imread(test_data_dir + name) for name in os.listdir(test_data_dir)], dtype=np.float64)
 
 parallax.main(data)
+
